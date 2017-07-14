@@ -32,15 +32,15 @@ router.get('/cpu',function (req, res) {
 		return res.json([{
     		status: 'green',
     		value: info.cpu,
-    		eventDate: moment.toDate()
+    		eventDate: moment().toDate()
     	}, {
             status: 'green',
             value: info.cpu,
-            eventDate: moment.add(1, 'd').toDate()
+            eventDate: moment().add(1, 'd').toDate()
         }, {
             status: 'green',
             value: info.cpu,
-            eventDate: moment.add(2, 'd').toDate()
+            eventDate: moment().add(2, 'd').toDate()
         }])
 	})
 })
@@ -51,15 +51,15 @@ router.get('/memory',function (req, res) {
 		return res.json([{
             status: 'green',
             value: info.memory,
-            eventDate: moment.toDate()
+            eventDate: moment().toDate()
         }, {
             status: 'green',
             value: info.memory,
-            eventDate: moment.add(1, 'd').toDate()
+            eventDate: moment().add(1, 'd').toDate()
         }, {
             status: 'green',
             value: info.memory,
-            eventDate: moment.add(2, 'd').toDate()
+            eventDate: moment().add(2, 'd').toDate()
         }])
 	})
 })
