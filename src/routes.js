@@ -27,7 +27,7 @@ router.get('/config',function (req, res) {
 })
 
 router.get('/cpu',function (req, res) {
-	return StatisticsServiceInstance.getProcessInfo()
+	return StatisticsServiceInstance.processInfo('mongod')
 	.then(info => {
 		return res.json({
             data: [{
@@ -48,20 +48,20 @@ router.get('/cpu',function (req, res) {
 })
 
 router.get('/memory',function (req, res) {
-	return StatisticsServiceInstance.getProcessInfo()
+	return StatisticsServiceInstance.processInfo('mongod')
 	.then(info => {
 		return res.json({
             data: [{
                 status: 'green',
-                value: info.memory,
+                value: info.rMemory,
                 eventDate: moment().toDate()
             }, {
                 status: 'green',
-                value: info.memory,
+                value: info.rMemory,
                 eventDate: moment().add(1, 'd').toDate()
             }, {
                 status: 'green',
-                value: info.memory,
+                value: info.rMemory,
                 eventDate: moment().add(2, 'd').toDate()
             }]
         })
