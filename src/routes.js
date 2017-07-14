@@ -12,6 +12,19 @@ router.get('/ping',function (req, res) {
     })
 })
 
+router.get('/config',function (req, res) {
+    return res.json({
+        cpu: {
+            green: 0.6,
+            yellow: 0.8
+        },
+        memory: {
+            green: 150000,
+            yellow: 250000
+        }
+    })
+})
+
 router.get('/cpu',function (req, res) {
 	return StatisticsServiceInstance.getProcessInfo()
 	.then(info => {
