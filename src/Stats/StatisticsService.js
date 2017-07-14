@@ -4,11 +4,13 @@ import childProcess from 'child_process'
 class StatisticsService {
 	getProcessInfo () {
 		if (os.platform === 'win32') {
-			return resolve({
-				rMemory: 15,
-	    		vMemory: 18,
-	    		cpu: 5.3,
-	    		process: 'mongod'
+			return new Promise((resolve, reject) => {
+				return resolve({
+					rMemory: 15,
+		    		vMemory: 18,
+		    		cpu: 5.3,
+		    		process: 'mongod'
+				})
 			})
 		} else {
 			return new Promise((resolve, reject) => {
