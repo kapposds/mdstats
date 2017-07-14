@@ -1,5 +1,5 @@
 import express from 'express'
-import StatisticsService from './Stats/StatisticsService'
+import StatisticsService from './Services/StatisticsService'
 
 const router = express.Router()
 
