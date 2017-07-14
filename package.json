@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.15.3",
-    "mongodb": "^2.2.30"
+    "mongodb": "^2.2.30",
+    "ps-node": "^0.1.6"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1"

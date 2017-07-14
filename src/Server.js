@@ -7,7 +7,6 @@ class Server {
 		this.app = express()
 		this.app.use('/api', routes)
 		this.server = http.createServer(this.app);
-
 	}
 
 	start () {
