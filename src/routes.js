@@ -48,11 +48,19 @@ router.get('/cpu',function (req, res) {
 router.get('/memory',function (req, res) {
 	return StatisticsServiceInstance.getProcessInfo()
 	.then(info => {
-		return res.json({
-    		status: 'green',
-    		value: info.vMemory,
-    		eventDate: new Date()
-    	})
+		return res.json([{
+            status: 'green',
+            value: info.memory,
+            eventDate: moment.toDate()
+        }, {
+            status: 'green',
+            value: info.memory,
+            eventDate: moment.add(1, 'd').toDate()
+        }, {
+            status: 'green',
+            value: info.memory,
+            eventDate: moment.add(2, 'd').toDate()
+        }])
 	})
 })
 
