@@ -5,7 +5,7 @@ class StatisticsService {
 	/**
 	* Returns info about the MongoDB process
 	* 
-	* @param {string} name - The title of the book.
+	* @param {string} name - The name of the process to look for
 	*
 	* @return {Object} processInfo
 	*/
