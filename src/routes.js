@@ -1,4 +1,5 @@
 import express from 'express'
+import moment from 'moment'
 import StatisticsService from './Services/StatisticsService'
 
 const router = express.Router()
@@ -28,11 +29,19 @@ router.get('/config',function (req, res) {
 router.get('/cpu',function (req, res) {
 	return StatisticsServiceInstance.getProcessInfo()
 	.then(info => {
-		return res.json({
+		return res.json([{
     		status: 'green',
     		value: info.cpu,
-    		eventDate: new Date()
-    	})
+    		eventDate: moment.toDate()
+    	}, {
+            status: 'green',
+            value: info.cpu,
+            eventDate: moment.add(1, 'd').toDate()
+        }, {
+            status: 'green',
+            value: info.cpu,
+            eventDate: moment.add(2, 'd').toDate()
+        }])
 	})
 })
 

@@ -3,7 +3,7 @@ import childProcess from 'child_process'
 
 class StatisticsService {
 	getProcessInfo () {
-		if (os.platform === 'win32') {
+		if (os.platform() === 'win32') {
 			return new Promise((resolve, reject) => {
 				return resolve({
 					rMemory: 15,

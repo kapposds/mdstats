@@ -1,4 +1,5 @@
 import express from 'express'
+import cors from 'cors'
 import http from 'http'
 import routes from './routes'
 
@@ -10,6 +11,7 @@ class Server {
 	}
 
 	start () {
+		this.app.use(cors())
 		this.server.listen(5000)
 	}
 }
