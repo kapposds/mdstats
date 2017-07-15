@@ -1,0 +1,10 @@
+{
+  "cpu": {
+    "green": 60,
+    "yellow": 80
+  },
+  "memory": {
+    "green": 150000,
+    "yellow": 250000
+  }
+}
