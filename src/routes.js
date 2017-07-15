@@ -2,10 +2,12 @@ import express from 'express'
 import moment from 'moment'
 
 import StatisticsService from './Services/StatisticsService'
+import ConfigService from './Services/ConfigService'
 
 const router = express.Router()
 
 const StatisticsServiceInstance = new StatisticsService()
+const ConfigServiceInstance = new ConfigService()
 
 router.get('/ping',function (req, res) {
     res.json({
@@ -15,15 +17,16 @@ router.get('/ping',function (req, res) {
 })
 
 router.get('/config',function (req, res) {
-    return res.json({
-        cpu: {
-            green: 0.6,
-            yellow: 0.8
-        },
-        memory: {
-            green: 150000,
-            yellow: 250000
-        }
+    return ConfigServiceInstance.getConfigurations()
+    .then(configs => {
+        return res.json(configs)
+    })
+})
+
+router.post('/config',function (req, res) {
+    return ConfigServiceInstance.storeConfigurations(req.body)
+    .then(() => {
+        return res.json({success: true})
     })
 })
 
