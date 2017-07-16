@@ -57,15 +57,15 @@ router.get('/memory',function (req, res) {
 		return res.json({
             data: [{
                 status: 'green',
-                value: info.rMemory,
+                value: info.memory,
                 eventDate: moment().toDate()
             }, {
                 status: 'green',
-                value: info.rMemory,
+                value: info.memory,
                 eventDate: moment().add(1, 'd').toDate()
             }, {
                 status: 'green',
-                value: info.rMemory,
+                value: info.memory,
                 eventDate: moment().add(2, 'd').toDate()
             }]
         })
