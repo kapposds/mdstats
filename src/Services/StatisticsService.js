@@ -7,7 +7,7 @@ import childProcess from 'child_process'
  */
 class StatisticsService {
 	/**
-	 * Returns info about the MongoDB process
+	 * Returns info about the given process
 	 * 
 	 * @param {string} name - The name of the process to look for
 	 *
