@@ -1,16 +1,14 @@
 import express from 'express'
-import moment from 'moment'
 
-import StatisticsService from './Services/StatisticsService'
+import StatisticsController from './Controllers/StatisticsController'
 import ConfigService from './Services/ConfigService'
 
 const router = express.Router()
 
-const StatisticsServiceInstance = new StatisticsService()
 const ConfigServiceInstance = new ConfigService()
 
 router.get('/ping',function (req, res) {
-    res.json({
+    return res.json({
     	serverStatus: 'green',
     	mongoDBStatus: 'green'
     })
@@ -31,45 +29,15 @@ router.post('/config',function (req, res) {
 })
 
 router.get('/cpu',function (req, res) {
-	return StatisticsServiceInstance.processInfo('mongod')
-	.then(info => {
-		return res.json({
-            data: [{
-        		status: 'green',
-        		value: info.cpu,
-        		eventDate: moment().toDate()
-        	}, {
-                status: 'green',
-                value: info.cpu,
-                eventDate: moment().add(1, 'd').toDate()
-            }, {
-                status: 'green',
-                value: info.cpu,
-                eventDate: moment().add(2, 'd').toDate()
-            }]
-        })
-	})
+	return StatisticsController.getCPU()
+	.then(info => res.json(info))
+    .catch(err => res.status(500).json({error: err.message}))
 })
 
 router.get('/memory',function (req, res) {
-	return StatisticsServiceInstance.processInfo('mongod')
-	.then(info => {
-		return res.json({
-            data: [{
-                status: 'green',
-                value: info.memory,
-                eventDate: moment().toDate()
-            }, {
-                status: 'green',
-                value: info.memory,
-                eventDate: moment().add(1, 'd').toDate()
-            }, {
-                status: 'green',
-                value: info.memory,
-                eventDate: moment().add(2, 'd').toDate()
-            }]
-        })
-	})
+	return StatisticsController.getMemory()
+    .then(info => res.json(info))
+    .catch(err => res.status(500).json({error: err.message}))
 })
 
 export default router
