@@ -1,24 +1,26 @@
 import Promise from 'bluebird'
+import path from 'path'
 import fs  from 'fs'
 Promise.promisifyAll(fs)
-
-const configurations = require('../../config.json')
+const configurations = require(process.cwd() + '/config.json')
 
 /**
  * Class responsible for retrieving and storing global configurations
  */
 class ConfigService {
-
 	getConfigurations () {
-		return new Promise((resolve, reject) => {
-			return resolve(configurations)
+		const configPath = path.join(process.cwd(), '/config.json')
+		return fs.readFileAsync(configPath, 'utf8')
+		.then(configurationsRaw => {
+			return JSON.parse(configurationsRaw)
 		})
 	}
 
 	storeConfigurations (data) {
-		return fs.truncateAsync(__dirname + '/../../config.json')
+		const configPath = path.join(process.cwd(), '/config.json')
+		return fs.truncateAsync(configPath)
 		.then(() => {
-			return fs.writeFileAsync(__dirname + '/../../config.json', JSON.stringify(data, null, 2))
+			return fs.writeFileAsync(configPath, JSON.stringify(data, null, 2))
 		})
 	}
 }
